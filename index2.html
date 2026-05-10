@@ -58,6 +58,7 @@
       </div>
       <input type="range" id="slider" min="0" max="100" value="100" />
       <div class="info">
+        <h2>Keterangan: </h2> <br>
         Cahaya Matahari (Foton) diserap oleh
         <b>Panel Surya</b> menghasilkan arus searah <b>(DC)</b>.
         <b>Inverter</b> mengubahnya menjadi arus bolak-balik
@@ -96,17 +97,21 @@
         inverter.innerText = '24V';
         wireDc.style.width = '180px';
         wireAc.style.width = '180px';
+        wireDc.style.setProperty('--wire-speed', '0.1s');
+        wireAc.style.setProperty('--wire-speed', '0.1s');
         window1.style.background = 'yellow';
         window2.style.background = 'yellow';
       } else if (value >= 50) {
         weatherText.innerText = 'Cerah Berawan';
         scene.style.background = 'linear-gradient(to bottom,#7fb3d5,#cfd9df)';
-        sun.style.opacity = 0.8;
+        sun.style.opacity = 1;
         cloud1.style.opacity = 0.5;
         cloud2.style.opacity = 0.5;
         inverter.innerText = '18V';
         wireDc.style.width = '140px';
         wireAc.style.width = '140px';
+        wireDc.style.setProperty('--wire-speed', '0.3s');
+        wireAc.style.setProperty('--wire-speed', '0.3s');
         window1.style.background = 'yellow';
         window2.style.background = 'yellow';
       } else if (value >= 15) {
@@ -116,8 +121,10 @@
         cloud1.style.opacity = 1;
         cloud2.style.opacity = 1;
         inverter.innerText = '8V';
-        wireDc.style.width = '80px';
-        wireAc.style.width = '80px';
+        wireDc.style.width = '180px';
+        wireAc.style.width = '180px';
+        wireDc.style.setProperty('--wire-speed', '0.5s');
+        wireAc.style.setProperty('--wire-speed', '0.5s');
         window1.style.background = '#374151';
         window2.style.background = '#374151';
       } else {
@@ -127,8 +134,10 @@
         cloud1.style.opacity = 0.8;
         cloud2.style.opacity = 0.8;
         inverter.innerText = '0V';
-        wireDc.style.width = '20px';
-        wireAc.style.width = '20px';
+        wireDc.style.width = '180px';
+        wireAc.style.width = '180px';
+        wireDc.style.setProperty('--wire-speed', '0.9s');
+        wireAc.style.setProperty('--wire-speed', '0.9s');
         window1.style.background = '#111827';
         window2.style.background = '#111827';
       }

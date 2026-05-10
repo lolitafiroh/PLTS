@@ -116,20 +116,19 @@ h1{
   position:absolute;
   width:170px;
   height:120px;
-  top:20px;
-  left:40px;
-  transform:rotate(-25deg);
+  top:30px;
+  left:44px;
   display:grid;
   grid-template-columns:repeat(6,1fr);
   grid-template-rows:repeat(4,1fr);
   gap:3px;
   padding:8px;
-  background:#d1d5db;
-  border:5px solid #bfc5cc;
-  border-radius:8px;
+  background:linear-gradient(to bottom, #0f3d91, #0b2e6b);
+  border:5px solid #4b5563;
+  border-radius:12px;
   box-shadow:
-    0 12px 25px rgba(0,0,0,0.35),
-    inset 0 0 8px rgba(255,255,255,0.4);
+    0 18px 35px rgba(0,0,0,0.25),
+    inset 0 0 10px rgba(255,255,255,0.15);
 }
 
 .panel::before{
@@ -195,12 +194,12 @@ h1{
 
 .support{
   position:absolute;
-  width:70px;
-  height:7px;
+  width:90px;
+  height:10px;
   background:#6b7280;
-  left:90px;
-  bottom:105px;
-  transform:rotate(-35deg);
+  left:100px;
+  bottom:108px;
+  transform:none;
   border-radius:10px;
 }
 
@@ -289,7 +288,7 @@ h1{
 }
 
 .active::before{
-  animation:flowRight 0.4s linear infinite;
+  animation:flowRight var(--wire-speed,0.4s) linear infinite;
 }
 
 @keyframes flowRight{
@@ -302,13 +301,13 @@ h1{
 }
 
 .dc-label{
-  left:450px;
-  top:305px;
+  left: 400px;
+  top:300px;
 }
 
 .ac-label{
-  left:690px;
-  top:305px;
+  left:600px;
+  top:300px;
 }
 
 .inverter{
