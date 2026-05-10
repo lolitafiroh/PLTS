@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Animasi Interaktif PLTS</title>
-
-<style>
-
 *{
   margin:0;
   padding:0;
@@ -62,8 +53,6 @@ h1{
   background:#3ecf72;
 }
 
-/* MATAHARI */
-
 .sun{
   position:absolute;
   width:90px;
@@ -75,8 +64,6 @@ h1{
   box-shadow:0 0 60px yellow;
   transition:0.5s;
 }
-
-/* AWAN */
 
 .cloud{
   position:absolute;
@@ -117,10 +104,6 @@ h1{
   top:55px;
 }
 
-/* ========================= */
-/* PANEL SURYA REALISTIS */
-/* ========================= */
-
 .solar-structure{
   position:absolute;
   left:120px;
@@ -129,55 +112,38 @@ h1{
   height:260px;
 }
 
-/* PANEL */
-
 .panel{
   position:absolute;
-
   width:170px;
   height:120px;
-
   top:20px;
   left:40px;
-
   transform:rotate(-25deg);
-
   display:grid;
   grid-template-columns:repeat(6,1fr);
   grid-template-rows:repeat(4,1fr);
-
   gap:3px;
-
   padding:8px;
-
   background:#d1d5db;
-
   border:5px solid #bfc5cc;
   border-radius:8px;
-
   box-shadow:
     0 12px 25px rgba(0,0,0,0.35),
     inset 0 0 8px rgba(255,255,255,0.4);
 }
 
-/* REFLEKSI */
-
 .panel::before{
   content:"";
   position:absolute;
   inset:0;
-
   background:linear-gradient(
     130deg,
     rgba(255,255,255,0.35),
     rgba(255,255,255,0.08) 40%,
     transparent 45%
   );
-
   border-radius:5px;
 }
-
-/* SEL PANEL */
 
 .panel div{
   background:linear-gradient(
@@ -185,16 +151,11 @@ h1{
     #0f4fa8,
     #083b84
   );
-
   border:1px solid rgba(255,255,255,0.45);
-
   border-radius:2px;
-
   position:relative;
   overflow:hidden;
 }
-
-/* GARIS PANEL */
 
 .panel div::before{
   content:"";
@@ -214,85 +175,55 @@ h1{
   left:50%;
 }
 
-/* TIANG TENGAH */
-
 .stand-left{
   position:absolute;
-
   width:16px;
   height:85px;
-
   background:linear-gradient(
     to bottom,
     #d1d5db,
     #6b7280
   );
-
   left:115px;
   bottom:38px;
-
   border-radius:10px;
 }
-
-/* SEMBUNYIKAN TIANG KANAN */
 
 .stand-right{
   display:none;
 }
 
-/* PENOPANG */
-
 .support{
   position:absolute;
-
   width:70px;
   height:7px;
-
   background:#6b7280;
-
   left:90px;
   bottom:105px;
-
   transform:rotate(-35deg);
-
   border-radius:10px;
 }
 
-/* DUDUKAN */
-
 .base{
   position:absolute;
-
   width:60px;
   height:12px;
-
   background:#9ca3af;
-
   left:93px;
   bottom:28px;
-
   border-radius:20px;
 }
 
-/* BAYANGAN */
-
 .shadow{
   position:absolute;
-
   width:130px;
   height:22px;
-
   background:rgba(0,0,0,0.18);
-
   bottom:18px;
   left:55px;
-
   border-radius:50%;
-
   filter:blur(6px);
 }
-
-/* LABEL */
 
 .label{
   position:absolute;
@@ -307,10 +238,6 @@ h1{
   left:175px;
   bottom:120px;
 }
-
-/* ========================= */
-/* KABEL LISTRIK */
-/* ========================= */
 
 .wire-dc,
 .wire-ac{
@@ -341,8 +268,6 @@ h1{
   left:-100%;
 }
 
-/* DC */
-
 .wire-dc::before{
   background:repeating-linear-gradient(
     90deg,
@@ -352,8 +277,6 @@ h1{
     transparent 30px
   );
 }
-
-/* AC */
 
 .wire-ac::before{
   background:repeating-linear-gradient(
@@ -365,8 +288,6 @@ h1{
   );
 }
 
-/* ANIMASI */
-
 .active::before{
   animation:flowRight 0.4s linear infinite;
 }
@@ -375,7 +296,6 @@ h1{
   from{
     transform:translateX(0);
   }
-
   to{
     transform:translateX(30px);
   }
@@ -390,8 +310,6 @@ h1{
   left:690px;
   top:305px;
 }
-
-/* INVERTER */
 
 .inverter{
   position:absolute;
@@ -414,8 +332,6 @@ h1{
   left:505px;
   top:360px;
 }
-
-/* RUMAH */
 
 .house{
   position:absolute;
@@ -470,8 +386,6 @@ h1{
   bottom:70px;
 }
 
-/* FOTON */
-
 .photon{
   position:absolute;
   width:6px;
@@ -492,8 +406,6 @@ h1{
     opacity:0;
   }
 }
-
-/* KONTROL */
 
 .controls{
   margin-top:30px;
@@ -535,220 +447,3 @@ input[type=range]{
   line-height:1.8;
   font-size:18px;
 }
-
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<h1>Panel Surya (PLTS)</h1>
-
-<p class="subtitle">
-Mengubah energi cahaya matahari (Foton)
-menjadi energi listrik melalui efek fotovoltaik.
-</p>
-
-<div class="scene" id="scene">
-
-<div class="ground"></div>
-
-<div class="sun" id="sun"></div>
-
-<div class="cloud" id="cloud1"></div>
-<div class="cloud cloud2" id="cloud2"></div>
-
-<div class="photon" style="left:120px; top:130px"></div>
-<div class="photon" style="left:140px; top:160px; animation-delay:0.3s"></div>
-<div class="photon" style="left:160px; top:180px; animation-delay:0.6s"></div>
-<div class="photon" style="left:180px; top:210px; animation-delay:0.9s"></div>
-
-<!-- PANEL SURYA -->
-
-<div class="solar-structure">
-
-  <div class="shadow"></div>
-
-  <div class="panel" id="panel"></div>
-
-  <div class="support"></div>
-
-  <div class="stand-left"></div>
-  <div class="stand-right"></div>
-
-  <div class="base"></div>
-
-</div>
-
-<div class="label panel-label">PANEL SURYA</div>
-
-<!-- KABEL -->
-
-<div class="wire-dc active" id="wireDc"></div>
-<div class="label dc-label">ARUS DC</div>
-
-<!-- INVERTER -->
-
-<div class="inverter" id="inverter">24V</div>
-<div class="label inverter-label">INVERTER</div>
-
-<!-- AC -->
-
-<div class="wire-ac active" id="wireAc"></div>
-<div class="label ac-label">ARUS AC</div>
-
-<!-- RUMAH -->
-
-<div class="house">
-  <div class="roof"></div>
-  <div class="window left" id="window1"></div>
-  <div class="window right" id="window2"></div>
-  <div class="door"></div>
-</div>
-
-<div class="label house-label">BEBAN (RUMAH)</div>
-
-</div>
-
-<!-- KONTROL -->
-
-<div class="controls">
-
-<div class="status">
-  <h2>Intensitas Matahari / Cuaca</h2>
-  <div class="weather" id="weatherText">Cerah Terik</div>
-</div>
-
-<input type="range" id="slider" min="0" max="100" value="100">
-
-<div class="info">
-Cahaya Matahari (Foton) diserap oleh
-<b>Panel Surya</b> menghasilkan arus searah <b>(DC)</b>.
-<b>Inverter</b> mengubahnya menjadi arus bolak-balik
-<b>(AC)</b> yang aman digunakan oleh <b>Peralatan Rumah</b>.
-</div>
-
-</div>
-</div>
-
-<script>
-
-const slider = document.getElementById('slider');
-const weatherText = document.getElementById('weatherText');
-const scene = document.getElementById('scene');
-const sun = document.getElementById('sun');
-const cloud1 = document.getElementById('cloud1');
-const cloud2 = document.getElementById('cloud2');
-const inverter = document.getElementById('inverter');
-const wireDc = document.getElementById('wireDc');
-const wireAc = document.getElementById('wireAc');
-const window1 = document.getElementById('window1');
-const window2 = document.getElementById('window2');
-
-/* MEMBUAT SEL PANEL */
-
-for(let i=0;i<24;i++){
-
-  const cell = document.createElement('div');
-
-  document.getElementById('panel').appendChild(cell);
-}
-
-function updateScene(){
-
-  const value = slider.value;
-
-  if(value >= 80){
-
-    weatherText.innerText = 'Cerah Terik';
-
-    scene.style.background =
-      'linear-gradient(to bottom,#87ceeb,#dff6ff)';
-
-    sun.style.opacity = 1;
-
-    cloud1.style.opacity = 0;
-    cloud2.style.opacity = 0;
-
-    inverter.innerText = '24V';
-
-    wireDc.style.width = '180px';
-    wireAc.style.width = '180px';
-
-    window1.style.background = 'yellow';
-    window2.style.background = 'yellow';
-  }
-
-  else if(value >= 50){
-
-    weatherText.innerText = 'Cerah Berawan';
-
-    scene.style.background =
-      'linear-gradient(to bottom,#7fb3d5,#cfd9df)';
-
-    sun.style.opacity = 0.8;
-
-    cloud1.style.opacity = 0.5;
-    cloud2.style.opacity = 0.5;
-
-    inverter.innerText = '18V';
-
-    wireDc.style.width = '140px';
-    wireAc.style.width = '140px';
-
-    window1.style.background = 'yellow';
-    window2.style.background = 'yellow';
-  }
-
-  else if(value >= 15){
-
-    weatherText.innerText = 'Mendung / Berawan';
-
-    scene.style.background =
-      'linear-gradient(to bottom,#5c677d,#9aa5b1)';
-
-    sun.style.opacity = 0.4;
-
-    cloud1.style.opacity = 1;
-    cloud2.style.opacity = 1;
-
-    inverter.innerText = '8V';
-
-    wireDc.style.width = '80px';
-    wireAc.style.width = '80px';
-
-    window1.style.background = '#374151';
-    window2.style.background = '#374151';
-  }
-
-  else{
-
-    weatherText.innerText = 'Malam Hari';
-
-    scene.style.background =
-      'linear-gradient(to bottom,#0f172a,#334155)';
-
-    sun.style.opacity = 0;
-
-    cloud1.style.opacity = 0.8;
-    cloud2.style.opacity = 0.8;
-
-    inverter.innerText = '0V';
-
-    wireDc.style.width = '20px';
-    wireAc.style.width = '20px';
-
-    window1.style.background = '#111827';
-    window2.style.background = '#111827';
-  }
-}
-
-slider.addEventListener('input', updateScene);
-
-updateScene();
-
-</script>
-
-</body>
-</html>

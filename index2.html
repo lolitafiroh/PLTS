@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animasi Interaktif PLTS - Versi Baru</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Panel Surya (PLTS)</h1>
+    <p class="subtitle">
+      Mengubah energi cahaya matahari (Foton)
+      menjadi energi listrik melalui efek fotovoltaik.
+    </p>
+
+    <div class="scene" id="scene">
+      <div class="ground"></div>
+      <div class="sun" id="sun"></div>
+      <div class="cloud" id="cloud1"></div>
+      <div class="cloud cloud2" id="cloud2"></div>
+
+      <div class="photon" style="left:120px; top:130px"></div>
+      <div class="photon" style="left:140px; top:160px; animation-delay:0.3s"></div>
+      <div class="photon" style="left:160px; top:180px; animation-delay:0.6s"></div>
+      <div class="photon" style="left:180px; top:210px; animation-delay:0.9s"></div>
+
+      <div class="solar-structure">
+        <div class="shadow"></div>
+        <div class="panel" id="panel"></div>
+        <div class="support"></div>
+        <div class="stand-left"></div>
+        <div class="stand-right"></div>
+        <div class="base"></div>
+      </div>
+
+      <div class="label panel-label">PANEL SURYA</div>
+      <div class="wire-dc active" id="wireDc"></div>
+      <div class="label dc-label">ARUS DC</div>
+      <div class="inverter" id="inverter">24V</div>
+      <div class="label inverter-label">INVERTER</div>
+      <div class="wire-ac active" id="wireAc"></div>
+      <div class="label ac-label">ARUS AC</div>
+
+      <div class="house">
+        <div class="roof"></div>
+        <div class="window left" id="window1"></div>
+        <div class="window right" id="window2"></div>
+        <div class="door"></div>
+      </div>
+      <div class="label house-label">BEBAN (RUMAH)</div>
+    </div>
+
+    <div class="controls">
+      <div class="status">
+        <h2>Intensitas Matahari / Cuaca</h2>
+        <div class="weather" id="weatherText">Cerah Terik</div>
+      </div>
+      <input type="range" id="slider" min="0" max="100" value="100" />
+      <div class="info">
+        Cahaya Matahari (Foton) diserap oleh
+        <b>Panel Surya</b> menghasilkan arus searah <b>(DC)</b>.
+        <b>Inverter</b> mengubahnya menjadi arus bolak-balik
+        <b>(AC)</b> yang aman digunakan oleh <b>Peralatan Rumah</b>.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const slider = document.getElementById('slider');
+    const weatherText = document.getElementById('weatherText');
+    const scene = document.getElementById('scene');
+    const sun = document.getElementById('sun');
+    const cloud1 = document.getElementById('cloud1');
+    const cloud2 = document.getElementById('cloud2');
+    const inverter = document.getElementById('inverter');
+    const wireDc = document.getElementById('wireDc');
+    const wireAc = document.getElementById('wireAc');
+    const window1 = document.getElementById('window1');
+    const window2 = document.getElementById('window2');
+
+    for (let i = 0; i < 24; i++) {
+      const cell = document.createElement('div');
+      document.getElementById('panel').appendChild(cell);
+    }
+
+    function updateScene() {
+      const value = slider.value;
+
+      if (value >= 80) {
+        weatherText.innerText = 'Cerah Terik';
+        scene.style.background = 'linear-gradient(to bottom,#87ceeb,#dff6ff)';
+        sun.style.opacity = 1;
+        cloud1.style.opacity = 0;
+        cloud2.style.opacity = 0;
+        inverter.innerText = '24V';
+        wireDc.style.width = '180px';
+        wireAc.style.width = '180px';
+        window1.style.background = 'yellow';
+        window2.style.background = 'yellow';
+      } else if (value >= 50) {
+        weatherText.innerText = 'Cerah Berawan';
+        scene.style.background = 'linear-gradient(to bottom,#7fb3d5,#cfd9df)';
+        sun.style.opacity = 0.8;
+        cloud1.style.opacity = 0.5;
+        cloud2.style.opacity = 0.5;
+        inverter.innerText = '18V';
+        wireDc.style.width = '140px';
+        wireAc.style.width = '140px';
+        window1.style.background = 'yellow';
+        window2.style.background = 'yellow';
+      } else if (value >= 15) {
+        weatherText.innerText = 'Mendung / Berawan';
+        scene.style.background = 'linear-gradient(to bottom,#5c677d,#9aa5b1)';
+        sun.style.opacity = 0.4;
+        cloud1.style.opacity = 1;
+        cloud2.style.opacity = 1;
+        inverter.innerText = '8V';
+        wireDc.style.width = '80px';
+        wireAc.style.width = '80px';
+        window1.style.background = '#374151';
+        window2.style.background = '#374151';
+      } else {
+        weatherText.innerText = 'Malam Hari';
+        scene.style.background = 'linear-gradient(to bottom,#0f172a,#334155)';
+        sun.style.opacity = 0;
+        cloud1.style.opacity = 0.8;
+        cloud2.style.opacity = 0.8;
+        inverter.innerText = '0V';
+        wireDc.style.width = '20px';
+        wireAc.style.width = '20px';
+        window1.style.background = '#111827';
+        window2.style.background = '#111827';
+      }
+    }
+
+    slider.addEventListener('input', updateScene);
+    updateScene();
+  </script>
+</body>
+</html>
